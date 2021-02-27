@@ -32,7 +32,7 @@ router.post('/users/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(email, password)
         const token = await user.generateAuthToken()
-        res.status(201).send({ user, token })
+        res.status(200).send({ user, token })
     } catch (e) {
         res.status(400).send(e)
     }
@@ -62,8 +62,8 @@ router.post('/users/logoutAll', auth, async (req, res) => {
     }
 })
 
-router.get('/users/me', auth, async (req, res) => {
-    res.send(req.user)
+router.get('/users/me', auth, async (req, res) => { 
+        res.send(req.user) 
 })
 
 // router.get('/users/:id', auth, async (req, res) => {
